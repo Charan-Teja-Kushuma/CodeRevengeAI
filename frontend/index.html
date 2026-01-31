@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workspace - CodeRev AI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Local overrides if absolutely needed, but rely on styles.css */
+        .workspace-sidebar {
+            background-color: var(--bg-card);
+            border-right: 1px solid var(--border-subtle);
+        }
+    </style>
+</head>
+
+<body class="h-screen flex overflow-hidden">
+    <!-- Sidebar -->
+    <aside class="w-64 workspace-sidebar flex flex-col z-20">
+        <div class="h-16 flex items-center px-6 border-b border-white/5">
+            <a href="/" class="flex items-center space-x-3 hover:opacity-80 transition-opacity">
+                <div class="bg-[#2A2F35] p-1.5 rounded-lg border border-white/10">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                        class="w-5 h-5 text-white">
+                        <path fill-rule="evenodd"
+                            d="M2.25 6a3 3 0 013-3h13.5a3 3 0 013 3v12a3 3 0 01-3 3H5.25a3 3 0 01-3-3V6zm3.97 4.03a.75.75 0 011.06 0l3 3a.75.75 0 010 1.06l-3 3a.75.75 0 01-1.06-1.06L8.44 13.5 6.22 11.28a.75.75 0 010-1.06zm9.53 5.47a.75.75 0 010 1.5H12a.75.75 0 010-1.5h3.75z"
+                            clip-rule="evenodd" />
+                    </svg>
+                </div>
+                <span class="text-sm font-bold text-white tracking-wide uppercase">CodeRev AI</span>
+            </a>
+        </div>
+
+        <nav class="flex-1 px-4 py-6 space-y-1">
+            <a href="#"
+                class="flex items-center px-4 py-2.5 text-sm font-medium rounded-lg text-white bg-white/5 border border-white/5">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                    class="w-4 h-4 mr-3 text-white">
+                    <path fill-rule="evenodd"
+                        d="M14.615 1.595a.75.75 0 01.359.852L12.982 9.75h7.268a.75.75 0 01.548 1.262l-10.5 11.25a.75.75 0 01-1.272-.71l2.976-7.969H4.614a.75.75 0 01-.635-1.152l8.636-9.75a.75.75 0 011.0.12z"
+                        clip-rule="evenodd" />
+                </svg>
+                New code
+            </a>
+            <a href="#"
+                class="flex items-center px-4 py-2.5 text-sm font-medium rounded-lg text-subtle hover:text-white hover:bg-white/5 transition-all">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4 mr-3">
+                    <path fill-rule="evenodd"
+                        d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zM12.75 6a.75.75 0 00-1.5 0v6c0 .414.336.75.75.75h4.5a.75.75 0 000-1.5h-3.75V6z"
+                        clip-rule="evenodd" />
+                </svg>
+                History
+            </a>
+            <a href="#"
+                class="flex items-center px-4 py-2.5 text-sm font-medium rounded-lg text-subtle hover:text-white hover:bg-white/5 transition-all">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4 mr-3">
+                    <path fill-rule="evenodd"
+                        d="M11.078 2.25c-.917 0-1.699.663-1.85 1.567L9.05 4.889c-.02.12-.115.26-.297.348a7.493 7.493 0 00-.986.57c-.166.115-.334.126-.45.083L6.3 5.508a1.875 1.875 0 00-2.282.819l-.922 1.597a1.875 1.875 0 00.432 2.385l.84.692c.095.078.17.229.154.43a7.598 7.598 0 000 1.139c.015.2-.059.352-.153.43l-.841.692a1.875 1.875 0 00-.432 2.385l.922 1.597a1.875 1.875 0 002.282.819l1.019-.382c.115-.043.283-.031.45.082.312.214.641.405.985.57.182.088.277.228.297.35l.178 1.071c.151.904.933 1.567 1.85 1.567h1.844c.916 0 1.699-.663 1.85-1.567l.178-1.072c.02-.12.114-.26.297-.349.344-.165.673-.356.985-.57.167-.114.335-.125.45-.082l1.02.382a1.875 1.875 0 002.28-.819l.923-1.597a1.875 1.875 0 00-.432-2.385l-.84-.692c-.095-.078-.17-.229-.154-.43a7.614 7.614 0 000-1.139c-.016-.2.059-.352.153-.43l.84-.692c.708-.582.891-1.59.433-2.385l-.922-1.597a1.875 1.875 0 00-2.282-.819l-1.02.382c-.114.043-.282.031-.449-.083a7.49 7.49 0 00-.985-.57c-.183-.087-.277-.227-.297-.348l-.179-1.072a1.875 1.875 0 00-1.85-1.567h-1.843zM12 15.75a3.75 3.75 0 100-7.5 3.75 3.75 0 000 7.5z"
+                        clip-rule="evenodd" />
+                </svg>
+                Documentation
+            </a>
+        </nav>
+
+        <div class="p-4 border-t border-white/5">
+            <div class="glass-card rounded-lg p-3 flex items-center space-x-3 border-none bg-white/5">
+                <div class="h-8 w-8 rounded bg-[#2A2F35] flex items-center justify-center text-xs font-bold text-white">
+                    DU</div>
+                <div class="flex-1 min-w-0">
+                    <p class="text-xs font-semibold text-white truncate">Demo User</p>
+                    <p class="text-[10px] text-muted truncate">Enterprise Plan</p>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 flex flex-col min-w-0 overflow-hidden relative bg-[#0D0F12]">
+
+        <!-- Top Header: GlassMorphic -->
+        <header class="h-16 flex items-center justify-between px-6 nav-blur z-30 sticky top-0">
+            <div class="flex items-center gap-4">
+                <h1 class="text-sm font-semibold text-white tracking-wide uppercase flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-blue-500 shadow-[0_0_8px_rgba(59,130,246,0.5)]"></span>
+                    Code Sessions
+                </h1>
+                <!-- Premium Badge from Landing Page -->
+                <div
+                    class="hidden sm:inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 backdrop-blur-md">
+                    <span class="relative flex h-2 w-2">
+                        <span
+                            class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                    </span>
+                    <span class="text-[10px] font-bold text-gray-200 tracking-widest uppercase">
+                        Enterprise Grid <span class="text-emerald-500">v2.0</span>
+                    </span>
+                </div>
+            </div>
+
+            <div class="flex items-center space-x-4">
+                <button class="btn-secondary text-xs py-1.5 px-3">Export Report</button>
+            </div>
+        </header>
+
+        <div class="flex-1 overflow-hidden p-6 z-10 flex gap-6">
+
+            <!-- Left Column: Input -->
+            <div class="flex-1 flex flex-col min-w-[300px]">
+                <div class="glass-card rounded-xl flex-1 flex flex-col relative overflow-hidden">
+                    <!-- Editor Header -->
+                    <div class="px-4 py-3 border-b border-white/5 flex items-center justify-between bg-[#1A1F24]/50">
+                        <span class="text-xs font-mono text-muted">Source Code</span>
+                        <div class="flex items-center space-x-3">
+                            <select id="language"
+                                class="bg-[#0D0F12] border border-white/10 text-subtle text-xs rounded focus:ring-1 focus:ring-white focus:border-white block py-1 px-2 outline-none">
+                                <option value="python">Python</option>
+                                <option value="javascript">JavaScript</option>
+                                <option value="java">Java</option>
+                                <option value="cpp">C++</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <textarea id="codeInput"
+                        class="flex-1 w-full bg-[#1E2329] border-0 p-4 font-mono text-sm text-[#D1D5DB] focus:ring-0 focus:outline-none resize-none custom-scrollbar"
+                        placeholder="// Paste your source code here for Enterprise Audit..."></textarea>
+
+                    <!-- Bottom Actions -->
+                    <div class="p-4 border-t border-white/5 bg-[#1A1F24]/50">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex gap-2">
+                                <label
+                                    class="inline-flex items-center px-3 py-1.5 rounded bg-[#0D0F12] border border-white/10 cursor-pointer hover:border-white/20 transition-all">
+                                    <input type="checkbox" value="Bugs" class="accent-white" checked>
+                                    <span class="ml-2 text-[10px] uppercase font-semibold text-subtle">Bugs</span>
+                                </label>
+                                <label
+                                    class="inline-flex items-center px-3 py-1.5 rounded bg-[#0D0F12] border border-white/10 cursor-pointer hover:border-white/20 transition-all">
+                                    <input type="checkbox" value="Security" class="accent-white" checked>
+                                    <span class="ml-2 text-[10px] uppercase font-semibold text-subtle">Security</span>
+                                </label>
+                                <label
+                                    class="inline-flex items-center px-3 py-1.5 rounded bg-[#0D0F12] border border-white/10 cursor-pointer hover:border-white/20 transition-all">
+                                    <input type="checkbox" value="Performance" class="accent-white">
+                                    <span
+                                        class="ml-2 text-[10px] uppercase font-semibold text-subtle">Performance</span>
+                                </label>
+                            </div>
+                        </div>
+                        <button id="analyzeBtn" onclick="analyzeCode()" class="w-full btn-primary text-sm space-x-2">
+                            <span>Execute Analysis</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                                class="w-4 h-4">
+                                <path fill-rule="evenodd"
+                                    d="M4.5 5.653c0-1.426 1.529-2.33 2.779-1.643l11.54 6.348c1.295.712 1.295 2.573 0 3.285L7.28 19.991c-1.25.687-2.779-.217-2.779-1.643V5.653z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column: Results -->
+            <div class="w-[45%] flex flex-col min-w-[300px]">
+                <div class="glass-card rounded-xl flex-1 flex flex-col overflow-hidden relative">
+                    <div class="px-5 py-4 border-b border-white/5 bg-[#1A1F24]/50 flex justify-between items-center">
+                        <h2 class="font-semibold text-white text-sm uppercase tracking-wide flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                                class="w-4 h-4 mr-2 text-muted">
+                                <path fill-rule="evenodd"
+                                    d="M5.625 1.5c-1.036 0-1.875.84-1.875 1.875v17.25c0 1.035.84 1.875 1.875 1.875h12.75c1.035 0 1.875-.84 1.875-1.875V12.75A3.75 3.75 0 0016.5 9h-1.875a1.875 1.875 0 01-1.875-1.875V5.25A3.75 3.75 0 009 1.5H5.625zM7.5 15a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5A.75.75 0 017.5 15zm.75 2.25a.75.75 0 000 1.5H12a.75.75 0 000-1.5H8.25z"
+                                    clip-rule="evenodd" />
+                                <path
+                                    d="M12.971 1.816A5.23 5.23 0 0114.25 5.25v1.875c0 .207.168.375.375.375H16.5a5.23 5.23 0 013.434 1.279 9.768 9.768 0 00-6.963-6.963z" />
+                            </svg>
+                            Code Report
+                        </h2>
+                        <div id="statusIndicator" class="hidden text-xs text-subtle animate-pulse">Processing...
+                        </div>
+                    </div>
+
+                    <!-- Empty State -->
+                    <div id="emptyState"
+                        class="flex-1 flex flex-col items-center justify-center text-muted space-y-6 opacity-60">
+                        <div
+                            class="w-16 h-16 rounded-2xl bg-[#0D0F12] border border-white/5 flex items-center justify-center grayscale opacity-50">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                                class="w-8 h-8">
+                                <path fill-rule="evenodd"
+                                    d="M5.625 1.5H9a3.75 3.75 0 013.75 3.75v1.875c0 1.036.84 1.875 1.875 1.875H16.5a3.75 3.75 0 013.75 3.75v7.875c0 1.035-.84 1.875-1.875 1.875H5.625a1.875 1.875 0 01-1.875-1.875V3.375c0-1.036.84-1.875 1.875-1.875z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </div>
+                        <div class="text-center">
+                            <p class="font-medium text-sm mb-1 text-white">Awaiting Input</p>
+                            <p class="text-xs">System ready for analysis.</p>
+                        </div>
+                    </div>
+
+                    <!-- Loading State -->
+                    <div id="loadingState" class="hidden flex-1 flex flex-col items-center justify-center space-y-8">
+                        <div class="relative">
+                            <div class="w-12 h-12 border-2 border-white/10 border-t-white rounded-full animate-spin">
+                            </div>
+                        </div>
+                        <div class="text-center space-y-2">
+                            <p class="text-white text-sm font-medium animate-pulse">Scanning Codebase...</p>
+                            <p class="text-xs text-muted">Running static & semantic analysis</p>
+                        </div>
+                    </div>
+
+                    <!-- Content -->
+                    <div id="resultsContent" class="hidden flex-1 flex flex-col overflow-hidden bg-[#1E2329]">
+                        <!-- Stats Bar -->
+                        <div class="grid grid-cols-4 gap-px bg-white/5 border-b border-white/5">
+                            <div class="p-3 bg-[#1A1F24] text-center">
+                                <div id="criticalCount" class="text-lg font-bold text-white leading-none">0</div>
+                                <div class="text-[9px] text-muted uppercase font-bold mt-1">Critical</div>
+                            </div>
+                            <div class="p-3 bg-[#1A1F24] text-center">
+                                <div id="highCount" class="text-lg font-bold text-white leading-none">0</div>
+                                <div class="text-[9px] text-muted uppercase font-bold mt-1">High</div>
+                            </div>
+                            <div class="p-3 bg-[#1A1F24] text-center">
+                                <div id="mediumCount" class="text-lg font-bold text-white leading-none">0</div>
+                                <div class="text-[9px] text-muted uppercase font-bold mt-1">Medium</div>
+                            </div>
+                            <div class="p-3 bg-[#1A1F24] text-center">
+                                <div id="lowCount" class="text-lg font-bold text-white leading-none">0</div>
+                                <div class="text-[9px] text-muted uppercase font-bold mt-1">Low</div>
+                            </div>
+                        </div>
+
+                        <!-- Markdown Content -->
+                        <div id="markdownOutput"
+                            class="flex-1 overflow-y-auto p-5 markdown-body custom-scrollbar text-sm text-[#D1D5DB]">
+                        </div>
+
+                        <!-- Optimization Action -->
+                        <div class="p-4 border-t border-white/5 bg-[#1A1F24]">
+                            <button
+                                class="w-full py-2.5 rounded border border-white/10 bg-[#0D0F12] text-white hover:bg-white/5 transition-all text-sm font-medium flex items-center justify-center space-x-2 group">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                                    class="w-4 h-4 text-subtle group-hover:text-white transition-colors">
+                                    <path fill-rule="evenodd"
+                                        d="M9 4.5a.75.75 0 01.721.544l.813 2.846a3.75 3.75 0 002.576 2.576l2.846.813a.75.75 0 010 1.442l-2.846.813a3.75 3.75 0 00-2.576 2.576l-.813 2.846a.75.75 0 01-1.442 0l-.813-2.846a3.75 3.75 0 00-2.576-2.576l-2.846-.813a.75.75 0 010-1.442l2.846-.813a3.75 3.75 0 002.576-2.576l.813-2.846A.75.75 0 019 4.5zM9 15a.75.75 0 01.75.75v1.5h1.5a.75.75 0 010 1.5h-1.5v1.5a.75.75 0 01-1.5 0v-1.5h-1.5a.75.75 0 010-1.5h1.5v-1.5A.75.75 0 019 15z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                                <span>Apply Automated Fixes</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Keep existing JS logic for CodeRev
+        async function analyzeCode() {
+            const code = document.getElementById('codeInput').value;
+            const language = document.getElementById('language').value;
+            const focusAreas = Array.from(document.querySelectorAll('input[type="checkbox"]:checked')).map(cb => cb.value);
+
+            if (!code.trim()) {
+                const textarea = document.getElementById('codeInput');
+                textarea.parentElement.classList.add('ring-1', 'ring-red-500');
+                setTimeout(() => textarea.parentElement.classList.remove('ring-1', 'ring-red-500'), 1000);
+                return;
+            }
+
+            document.getElementById('emptyState').classList.add('hidden');
+            document.getElementById('resultsContent').classList.add('hidden');
+            document.getElementById('loadingState').classList.remove('hidden');
+            document.getElementById('statusIndicator').classList.remove('hidden');
+
+            const btn = document.getElementById('analyzeBtn');
+            const originalBtnText = btn.innerHTML;
+            btn.disabled = true;
+            btn.innerHTML = '<span class="animate-spin mr-2">⏳</span> Processing...';
+            btn.classList.add('opacity-50', 'cursor-not-allowed');
+
+            try {
+                const response = await fetch('http://127.0.0.1:8001/api/review', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ code, language, focus_areas: focusAreas })
+                });
+
+                if (!response.ok) throw new Error('Analysis failed');
+
+                const data = await response.json();
+
+                document.getElementById('criticalCount').textContent = data.critical_count;
+                document.getElementById('highCount').textContent = data.high_count;
+                document.getElementById('mediumCount').textContent = data.medium_count;
+                document.getElementById('lowCount').textContent = data.low_count;
+
+                document.getElementById('markdownOutput').innerHTML = marked.parse(data.review);
+                document.querySelectorAll('pre code').forEach((block) => hljs.highlightElement(block));
+
+                document.getElementById('loadingState').classList.add('hidden');
+                document.getElementById('resultsContent').classList.remove('hidden');
+                document.getElementById('statusIndicator').classList.add('hidden');
+
+            } catch (error) {
+                console.error('Error:', error);
+                alert(`Analysis Failed: ${error.message}\n\nPlease ensure backend is running at http://127.0.0.1:8001`);
+                document.getElementById('loadingState').classList.add('hidden');
+                document.getElementById('emptyState').classList.remove('hidden');
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = originalBtnText;
+                btn.classList.remove('opacity-50', 'cursor-not-allowed');
+            }
+        }
+    </script>
+</body>
+
+</html>
